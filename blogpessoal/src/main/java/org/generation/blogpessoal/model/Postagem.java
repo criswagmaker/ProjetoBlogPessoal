@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,11 +27,11 @@ public class Postagem {
 	private String titulo;
 	
 	@NotNull
-	@Size(min=5,max=100)// Definindo tamanho mínimo e máximo do campo 
+	@Size(min=5,max=1000)// Definindo tamanho mínimo e máximo do campo 
 	private String texto;
 	
-	private LocalDateTime data;
-
+	@UpdateTimestamp
+	private LocalDateTime data; //Importa data e hora
 	
 	// Métodos Getters and Setters
 	
