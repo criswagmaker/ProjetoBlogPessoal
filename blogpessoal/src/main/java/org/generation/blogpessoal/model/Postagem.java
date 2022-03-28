@@ -9,32 +9,39 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToOne;
 
 @Entity // Trasformando em Tabela
-@Table(name="tb_postagens")// Nomeia Tabela
+@Table(name = "tb_postagens") // Nomeia Tabela
 public class Postagem {
 
 	@Id // Informa que é um id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto_increment
 	private Long id;
-	
+
 	@NotNull
-	@Size(min=5,max=100)
+	@Size(min = 5, max = 100)
 	private String titulo;
-	
+
 	@NotNull
-	@Size(min=5,max=1000)// Definindo tamanho mínimo e máximo do campo 
+	@Size(min = 5, max = 1000) // Definindo tamanho mínimo e máximo do campo
 	private String texto;
-	
+
 	@UpdateTimestamp
-	private LocalDateTime data; //Importa data e hora
-	
+	private LocalDateTime data; // Importa data e hora
+
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Tema tema;
+
 	// Métodos Getters and Setters
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -66,5 +73,13 @@ public class Postagem {
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
-	
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
+
 }
