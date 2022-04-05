@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController // Dá acesso ao CRUD e associados
 @RequestMapping("/postagens") // End point
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+
 public class PostagemController {
 
 	@Autowired
