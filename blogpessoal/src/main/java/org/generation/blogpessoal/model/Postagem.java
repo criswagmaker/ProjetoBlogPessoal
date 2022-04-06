@@ -9,7 +9,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.GeneratedValue;
