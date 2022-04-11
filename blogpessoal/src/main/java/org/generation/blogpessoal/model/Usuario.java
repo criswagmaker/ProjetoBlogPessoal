@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name = "tb_usuarios")
 public class Usuario {
@@ -23,8 +25,10 @@ public class Usuario {
 	private Long id;
 
 	private String nome;
-
-	@Email
+	
+	@Schema(example = "email@email.com.br")
+	@NotNull(message = "O atributo Usuário é Obrigatório!")
+	@Email(message = "O atributo Usuário deve ser um email válido!")
 	private String usuario;
 
 	@NotNull
@@ -35,10 +39,11 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagens;
-	
-	//Metodos construtores para testes
-	//Importante seguir a mesma ordem das declarações dos atributos de usuario acima
-	//Construtor cheio
+
+	// Metodos construtores para testes
+	// Importante seguir a mesma ordem das declarações dos atributos de usuario
+	// acima
+	// Construtor cheio
 	public Usuario(Long id, String nome, String usuario, String senha, String foto) {
 		this.id = id;
 		this.nome = nome;
@@ -46,9 +51,10 @@ public class Usuario {
 		this.senha = senha;
 		this.foto = foto;
 	}
-	
-	//Construtor vazio
-	public Usuario() {}
+
+	// Construtor vazio
+	public Usuario() {
+	}
 
 	public Long getId() {
 		return id;
